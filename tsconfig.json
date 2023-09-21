@@ -24,7 +24,8 @@
   "include": [
     ".eslintrc.cjs",
     "next-env.d.ts",
-    "**/*.ts",
+    "./server/api/routers/example.ts",
+    "src/**/*.ts",
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs"

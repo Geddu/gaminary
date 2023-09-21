@@ -10,7 +10,7 @@ const config = {
       ],
       files: ["*.ts", "*.tsx"],
       parserOptions: {
-        project: path.join(__dirname, "tsconfig.json"),
+        project: path.join(__dirname, "./tsconfig.json"),
       },
     },
   ],

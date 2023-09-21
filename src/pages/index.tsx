@@ -56,10 +56,12 @@ export default function Home() {
         
         <div>
            
-           {data?.map((post) => (<div key={post.id}>{post.content}</div>))}
+           {data?.map((post) => (
+            <div key={post.id}>{post.content}</div>
+           ))}
           
         </div>
       </main>
     </>
-  );
+  )
 }

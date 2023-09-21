@@ -2,14 +2,16 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
 generator client {
   provider = "prisma-client-js"
 }
+
+//-------------------------------
 
 model Post {
   id        Int      @id @default(autoincrement())
@@ -22,6 +24,27 @@ model Post {
   tags      Tag[]
 
   @@index([authorId])
+}
+
+model Message {
+  id        Int    @id @default(autoincrement())
+  text      String
+  from      Int    @unique
+  to        Int    @unique
+  createdAt String
+  updatedAt String
+  room      Room   @relation(fields: [roomId], references: [id])
+  roomId    Int
+
+  @@index([roomId])
+}
+
+model Room {
+  id           Int       @id @default(autoincrement())
+  participants User[]
+  messages     Message[]
+  createdAt    DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt    DateTime  @default(now()) @db.Timestamp(6)
 }
 
 model Profile {
@@ -37,6 +60,7 @@ model User {
   email   String   @unique @db.VarChar(255)
   post    Post[]
   profile Profile?
+  Rooms   Room[] 
 }
 
 model Tag {
